@@ -6,6 +6,7 @@ export class BrainFuck {
     public output: any;
     public code: any;
     private inputTape: any;
+    private temp:string;
     private inputPos: number;
 
     public constructor(code: string, tape?: number, input?: any) {
@@ -13,6 +14,7 @@ export class BrainFuck {
         this.pointer = 0;
         this.position = 0;
         this.output = []
+        this.temp = "0"
         this.tape = new Array(tape ? tape : 27).fill("0")
         this.code = code.split('')
         this.inputTape = input ? input : undefined;
@@ -45,6 +47,15 @@ export class BrainFuck {
                 break;
             case "-":
                 this.decrement()
+                break;
+            case "^":
+                this.SquareValue()
+                break;
+            case "#":
+                this.CopyValue()
+                break;
+            case "@":
+                this.PasteValue()
                 break;
             case "[":
                 this.jumpRight()
@@ -103,6 +114,23 @@ export class BrainFuck {
             let test = parseInt(this.tape[this.pointer]) - 1
             this.tape[this.pointer] = test.toString()
         }
+        this.position++
+    }
+    private SquareValue() {
+        if (parseInt(this.tape[this.pointer]) ** 2 >= 127) {
+            this.tape[this.pointer] = "0"
+        } else {
+            let test = parseInt(this.tape[this.pointer]) ** 2
+            this.tape[this.pointer] = test.toString()
+        }
+        this.position++
+    }
+    private CopyValue() {
+        this.temp = this.tape[this.pointer]
+        this.position++
+    }
+    private PasteValue() {
+        this.tape[this.pointer] = this.temp
         this.position++
     }
     private jumpRight() {
