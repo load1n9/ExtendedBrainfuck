@@ -23,7 +23,7 @@ I was very bored
 # example
 
 ```js
-import { BrainFuck } from "../bf.ts"
+import { BrainFuck } from "./bf.ts"
 let code = `++++++++++[>+++++++>+++++++++
             +>+++>+<<<<-]>++.>+.+++++++..+
             ++.>++.<<+++++++++++++++.>.+++.
