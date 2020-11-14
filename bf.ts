@@ -8,20 +8,20 @@ export class BrainFuck {
     private inputTape: any;
     private inputPos: number;
 
-    public constructor(code: string, tape: string, input?: any) {
+    public constructor(code: string, tape?: number, input?: any) {
 
         this.pointer = 0;
         this.position = 0;
-        this.tape = tape.split('')
+        this.output = []
+        this.tape = new Array(tape ? tape : 27).fill("0")
         this.code = code.split('')
-        this.inputTape = (input == null) ? undefined : input;
+        this.inputTape = input ? input : undefined;
         this.inputPos = 0;
 
         while (this.position <= this.code.length - 1) {
             this.parse(this.code[this.position])
 
         }
-        this.output = this.tape.join("")
 
     }
 
@@ -77,7 +77,7 @@ export class BrainFuck {
 
     }
     private printValue() {
-        console.log(String.fromCharCode(Number(this.tape[this.pointer])))
+        this.output.push(String.fromCharCode(Number(this.tape[this.pointer])))
         this.position++
     }
     private inputValue() {
@@ -125,6 +125,9 @@ export class BrainFuck {
     }
     private Unknown() {
         this.position++
+    }
+    public Output() {
+        return this.output.join('')
     }
 
 }
