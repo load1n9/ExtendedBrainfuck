@@ -33,4 +33,21 @@ console.log(program.Output())
 
 
 ```
+# cli
+
+### install 
+```
+deno install -n brainfuck https://raw.githubusercontent.com/load1n9/ExtendedBrainfuck/main/dist/cli/brainfuck.ts
+```
+### repl
+```
+brainfuck
+```
+
+### interpret file
+
+```
+brainfuck -f ./examples/helloworld.bf
+```
+
 
